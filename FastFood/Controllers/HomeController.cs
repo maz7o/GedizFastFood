@@ -13,6 +13,7 @@ namespace FastFood.Controllers
         FastFoodDAL db = new FastFoodDAL();
         public ActionResult Index()
         {
+            int a = 0;
             List<Restaurant> restaurants = db.Restaurants.ToList();
             ViewData["Restaurants"] = restaurants;
             return View();
