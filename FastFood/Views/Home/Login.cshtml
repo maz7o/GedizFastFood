@@ -1,0 +1,52 @@
+﻿<script src="/Scripts/Form.js"></script>
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="form_block">
+        <div class="container">
+            <div class="row">
+                <div class="grid_11">
+                    <h2>Login</h2>
+                    <form id="form">
+
+                        <div class="modal fade response-message">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Modal title</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="response-error-message"></div>
+                        <label class="name">
+                            <input type="text" id="txtuserid" name="name" placeholder="Student ID:" value="" data-constraints="@@Required @@JustNumbers" />
+                            <span class="empty-message">*This field is required.</span>
+                            <span class="error-message">*Student Id should only be numbers.</span>
+                        </label>
+                        <div class="clear"></div>
+                        <label class="phone">
+                            <input type="password" id="txtpassword" name="password" placeholder="Password:" value="" data-constraints="@@Required" />
+                            <span class="empty-message">*This field is required.</span>
+                            <span class="error-message">*This is not a valid phone.</span>
+                        </label>
+
+                        <div class="clear"></div>
+                        <div class="formerrormsg" style="color:red;"></div>
+
+                        <a href="#" data-type="submit" class="btn" onclick="javascript: ValidateUser();">login</a>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    FastFood.Models.Users user = (FastFood.Models.Users)ViewData["User"];
+}
+<section class="content ctn__1">
+    <div class="container">
+        <div class="row">
+            <div class="grid_12">
+               <h2>Welcome @user.firstName &nbsp;&nbsp; @user.lastName</h2>
+                <strong>Account Information</strong>
+                <br />
+                Student ID : @user.studentId
+                <br />
+                Email : @user.mail
+                <br />
+                Balance : @user.balance TL
+                <br />
+                <strong style="color:red">@Html.ActionLink("Logout", "Logout", "Home")</strong>
+            </div>
+        </div>
+    </div>
+</section>

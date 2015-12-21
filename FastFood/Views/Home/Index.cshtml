@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+@{
+    List<FastFood.Models.Restaurant> restaurants = (List<FastFood.Models.Restaurant>)ViewData["Restaurants"];
+}
+<section class="content">
+    
+    <div class="container">
+        <div class="row">
+
+            @foreach (FastFood.Models.Restaurant r in restaurants)
+            {
+                <div class="grid_4">
+                    <div class="banner">
+                        <div class="gall_block">
+                            <img src="@r.restaurantImage" alt="">
+                            <div class="bann_capt ">
+                                <div class="maxheight">
+                                    <img src="/Content/Images/icon1.png" alt="">
+                                    <div class="bann_title">@r.restaurantName</div>
+                                    <a href="#">more</a>
+                                </div> <!--End of maxheight -->
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--End of Grid 4 -->
+
+
+            }
+
+
+
+
+            @Html.Partial("_Login")
