@@ -8,7 +8,7 @@
     List<FastFood.Models.Restaurant> restaurants = (List<FastFood.Models.Restaurant>)ViewData["Restaurants"];
 }
 <section class="content">
-    
+
     <div class="container">
         <div class="row">
 
@@ -22,8 +22,8 @@
                                 <div class="maxheight">
                                     <img src="/Content/Images/icon1.png" alt="">
                                     <div class="bann_title">@r.restaurantName</div>
-                                @Html.ActionLink("Menu","Foods", new {id=@r.restaurantId})
-                                   
+                                    @Html.ActionLink("Menu", "Foods", new { id = @r.restaurantId })
+
                                 </div> <!--End of maxheight -->
                             </div>
                         </div>
@@ -37,3 +37,6 @@
 
 
             @Html.Partial("_Login")
+        </div>
+    </div>
+</section>

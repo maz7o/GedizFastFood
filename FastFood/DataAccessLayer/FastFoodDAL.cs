@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using FastFood.Models;
 namespace FastFood.DataAccessLayer
 {
@@ -16,8 +12,8 @@ namespace FastFood.DataAccessLayer
         {
             modelBuilder.Entity<Users>().ToTable("UsersTbl");
             modelBuilder.Entity<Restaurant>().ToTable("RestaurantsTbl");
-            modelBuilder.Entity<Food>().ToTable("FoodTbl").HasRequired<Restaurant>(s=>s.restaurant);
-            modelBuilder.Entity<Admin>().ToTable("AdminTbl").HasRequired<Restaurant>(s=>s.restaurant);
+            modelBuilder.Entity<Food>().ToTable("FoodTbl").HasRequired(s=>s.restaurant);
+            modelBuilder.Entity<Admin>().ToTable("AdminTbl").HasRequired(s=>s.restaurant);
 
             base.OnModelCreating(modelBuilder);
         }

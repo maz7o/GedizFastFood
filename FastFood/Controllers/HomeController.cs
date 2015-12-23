@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.Mvc;
 using FastFood.DataAccessLayer;
 using FastFood.Models;
@@ -10,7 +8,7 @@ namespace FastFood.Controllers
 {
     public class HomeController : Controller
     {
-        FastFoodDAL db = new FastFoodDAL();
+        private FastFoodDAL db = new FastFoodDAL();
         public ActionResult Index()
         {
             List<Restaurant> restaurants = db.Restaurants.ToList();
@@ -33,7 +31,7 @@ namespace FastFood.Controllers
             {
                 if (id != null)
                 {
-                    FastFood.Models.Food food = db.Foods.ToList().First(f => f.foodId == id);
+                    var food = db.Foods.ToList().First(f => f.foodId == id);
                     
                     ViewData["Food"] = food;
                     return View();
