@@ -7,7 +7,8 @@
 
         }
         else if (password == '') {
-            $('div.formerrormsg').text("Please enter your password");
+            $('div.formerrormsg').hide();
+            //$('div.formerrormsg').text("Please enter your password");
         }
         else {
             $('div.formerrormsg').text("");
@@ -19,7 +20,8 @@ function ValidateUser() {
     var userid = $("#txtuserid").attr('value');
     var password = $("#txtpassword").attr('value');
     var url = "/Admin/ValidateAdmin/";
-    $("#btnlogin").val('Plesae wait..');
+    $('div.formerrormsg').text("Please wait");
+    $('a.#btn').text("Please wait");
     $.ajax({
         url: url,
         data: { userId: userid, password: password },
