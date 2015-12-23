@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FastFood.Models.Food>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.foodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.foodPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.foodImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.foodName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.foodPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.foodImage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.foodId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.foodId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.foodId })
+        </td>
+    </tr>
+}
+
+</table>

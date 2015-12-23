@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Foods";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <section class="content gallery pad1">
@@ -30,9 +30,8 @@
                                 Food Price :  @r.foodPrice
 
                                 <br />
-                                @r.foodId
-                                @Html.ActionLink("more", "Reservation", new { id = @r.foodId }, new { @class="btn"})
-                               
+                                @Html.ActionLink("Delete", "Delete", new { id=@r.foodId}, new { @class="btn"})
+                                @Html.ActionLink("Update", "Update", new { id = @r.foodId }, new { @class = "btn" })
 
                             </div>
 

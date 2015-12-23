@@ -3,17 +3,21 @@
     ViewBag.Title = "Reservation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    FastFood.Models.Food food = (FastFood.Models.Food)ViewData["Food"];
 
+}
 <section class="content">
     <div class="ic">More Website Templates @@ AppState TemplateMonster.com - July 30, 2014!</div>
     <div class="container">
         <div class="row">
             <div class="grid_8">
                 <h2>Reserve Your Table</h2>
-                <img src="/Content/Images/page3_img1.jpg" alt="" class="img_inner fleft inn__1">
+                <img src="@food.foodImage" alt="" class="img_inner fleft inn__1">
                 <div class="extra_wrapper">
                     <div class="text1 tx__1"><a href="#">Vivamus at magna non nunc </a></div>
-                    <p>Rehoncus. Aliquam nibh antegestas id ictum ado. Praesenterto faucibus maleada faucibusnec laeetert metus id laoreet </p>
+                    <p>Food Name : @food.foodName </p>
+                    <p>Food Price: @food.foodPrice</p>
                     <p>Nullam consectetur orci sed nulla facilisisequaterto. Curabitur vel lorem sit amet nulla perermentum. Aliquam nibh ante, egestas id dictum a, commodo luctus libero.</p>
                     Praesent faucibus malesuada faucibus. Donecertolin laoreet metus id laoreet malesuada.  orem ipsum dolor sit amet, consectetur adipiscing elit.
                 </div>

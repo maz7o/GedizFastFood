@@ -1,0 +1,43 @@
+﻿@model FastFood.Models.Food
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Food</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.foodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foodPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foodPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foodImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foodImage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.foodId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

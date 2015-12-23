@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="bootstrap.js" />
 /// <reference path="form.js" />
+/// <reference path="formadmin.js" />
 /// <reference path="html5shiv.js" />
 /// <reference path="jquery.easing.1.3.js" />
 /// <reference path="jquery.equalheights.js" />

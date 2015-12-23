@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Delete Confirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    FastFood.Models.Food food = (FastFood.Models.Food)ViewData["Food"];
+
+}
+<section class="content">
+    <div class="ic">More Website Templates @@ AppState TemplateMonster.com - July 30, 2014!</div>
+    <div class="container">
+        <div class="row">
+            <div class="grid_8">
+                <h2>Are you sure you want to delete this food ? </h2>
+                <img src="@food.foodImage" alt="" class="img_inner fleft inn__1">
+                <div class="extra_wrapper">
+                    <div class="text1 tx__1">Delete food with id : @food.foodId</div>
+                    <p>Food Name : @food.foodName </p>
+                    <p>Food Price: @food.foodPrice</p>
+                    <p>This deletion is permanent so be careful before you confirm delete</p>
+                </div>
+                <div class="clear"></div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn" /> |
+                        @Html.ActionLink("Back to Foods", "Foods",null, new { @class="btn"})
+                    </div>
+                }
+                
+            </div>
+            
+        </div>
+    </div>
+</section>
+

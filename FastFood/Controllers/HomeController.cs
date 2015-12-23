@@ -27,19 +27,59 @@ namespace FastFood.Controllers
 
 
 
-        public ActionResult Reservation()
+        public ActionResult Reservation(int? id)
         {
-            return View();
+            if (Session["userid"] != null)
+            {
+                if (id != null)
+                {
+                    FastFood.Models.Food food = db.Foods.ToList().First(f => f.foodId == id);
+                    
+                    ViewData["Food"] = food;
+                    return View();
+
+                }
+                else
+                {
+                    return View("Foods");
+                }
+            }
+            else
+            {
+                return View("Login");
+            }
+
+            
+            
         }
 
-        public ActionResult Foods()
+        public ActionResult Foods(int? id)
         {
-            ViewBag.Message = "Foods";
-            List<Food> foods = db.Foods.ToList();
-            ViewData["Foods"] = foods;
+            if (id == null)
+            {
+                ViewBag.Message = "Foods";
+                List<Food> foods = db.Foods.ToList();
+                ViewData["Foods"] = foods;
 
-            return View();
+                return View();
+            }
+            else
+            {
+                List<Food> foods = db.Foods.ToList();
+                List<Food> restaurantFoods = new List<Food>();
+                foreach (Food food in foods)
+                {
+                    if(food.restaurant.restaurantId == id)
+                    {
+                        restaurantFoods.Add(food);
+                    }
+                }
+                ViewData["Foods"] = restaurantFoods;
+                return View();
+
+            } 
         }
+
         public ActionResult Contact()
         {
             return View();

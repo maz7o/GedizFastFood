@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    FastFood.Models.Admin admin = (FastFood.Models.Admin)ViewData["Admin"];
+}
+<section class="content ctn__1">
+    <div class="container">
+        <div class="row">
+            <div class="grid_12">
+                <h2>Welcome @admin.firstName &nbsp;&nbsp; @admin.lastName</h2>
+                <strong>Account Information</strong>
+                <br />
+                UserName : @admin.userName
+                <br />
+                Restaurant : @admin.restaurant.restaurantName;
+                <br />
+               
+                <strong style="color:red">@Html.ActionLink("Logout", "Logout", "Admin")</strong>
+            </div>
+        </div>
+    </div>
+</section>

@@ -9,7 +9,7 @@ namespace FastFood.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(FastFood.DataAccessLayer.FastFoodDAL context)
