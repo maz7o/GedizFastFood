@@ -7,8 +7,7 @@
 
         }
         else if (password == '') {
-            $('div.formerrormsg').hide();
-            //$('div.formerrormsg').text("Please enter your password");
+            $('div.formerrormsg').text("Please enter your password");
         }
         else {
             $('div.formerrormsg').text("");
@@ -20,8 +19,7 @@ function ValidateUser() {
     var userid = $("#txtuserid").attr('value');
     var password = $("#txtpassword").attr('value');
     var url = "/Admin/ValidateAdmin/";
-    $('div.formerrormsg').text("Please wait");
-    $('a.#btn').text("Please wait");
+    $('img.loading').show();
     $.ajax({
         url: url,
         data: { userId: userid, password: password },
@@ -30,6 +28,7 @@ function ValidateUser() {
         success: function (data) {
 
             if (data == "1") {
+                
                 window.location.href = '/Admin/Index';
             } else {
                 $('div.formerrormsg').text("Your username or password is incorrect");
@@ -41,5 +40,5 @@ function ValidateUser() {
             console.log(response);
         }
     });
-    $("#btnlogin").val('Login');
+    $('img.loading').hide();
 }
