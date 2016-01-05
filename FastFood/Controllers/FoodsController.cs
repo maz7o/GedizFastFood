@@ -47,7 +47,7 @@ namespace FastFood.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "foodId,foodName,foodPrice,foodImage")] Food food)
+        public ActionResult Create([Bind(Include = "foodId,foodName,foodPrice,foodImage")] Food food, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {

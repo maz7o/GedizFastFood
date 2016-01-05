@@ -22,7 +22,7 @@ function ValidateUser() {
     var userid = $("#txtuserid").attr('value');
     var password = $("#txtpassword").attr('value');
     var url = "/Home/ValidateUser/";
-    $('img.loading').show();
+    $('img.loading').show();    
     $.ajax({
         url: url,
         data: { userId: userid, password: password },

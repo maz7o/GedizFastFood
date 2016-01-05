@@ -1,0 +1,52 @@
+﻿@model FastFood.Models.Food
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<section class="content">
+    <div class="ic">More Website Templates @@ AppState TemplateMonster.com - July 30, 2014!</div>
+    <div class="container">
+        <div class="row">
+            <div class="grid_12">
+                <h2>Add</h2>
+                <div class="clear"></div>
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.HiddenFor(model => model.foodId)
+                    @Html.HiddenFor(model => model.foodImage)
+                    <br />
+                        @:<div class="form_title colo1"><strong>Food name</strong></div>
+                        <div class="clear"></div>
+                    <label class="name">
+
+                        <input type="text" id="foodName" name="foodName" placeholder="Food Name" data-constraints="@@Required"/>
+
+                    </label>
+
+                        <div class="clear"></div>
+                        <div class="form_title colo1"><strong>Food price</strong></div>
+                        <label class="phone">
+                            <input type="text" id="foodPrice" name="foodPrice" placeholder="Food Price"  data-constraints="@@Required" />
+                        </label>
+                        <div class="clear"></div>
+                        <a href="#" onclick="document.getElementById('form').submit();" class="btn">Edit</a>
+                        @Html.ActionLink("Back to Foods", "Foods", null, new { @class = "btn" })
+
+
+                }
+
+
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

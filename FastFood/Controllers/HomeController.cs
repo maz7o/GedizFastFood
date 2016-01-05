@@ -107,7 +107,7 @@ namespace FastFood.Controllers
             {
                 if (user.studentId == userId && user.password==password)
                 {
-                    Session["userid"] = user.studentId;
+                    //Session["userid"] = user.studentId;
                     return "1";
                 }
 
@@ -117,6 +117,22 @@ namespace FastFood.Controllers
             return "0";
 
         }
+
+        public Boolean userExist(String userid)
+        {
+            List<Users> users = db.Users.ToList();
+            foreach (Users user in users)
+            {
+                if (user.studentId == userid)
+                {
+                    //Session["userid"] = user.studentId;
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
 
         public ActionResult Logout()
         {
