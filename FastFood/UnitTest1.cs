@@ -43,7 +43,7 @@ namespace FastFood
         public void Check()
         {
             HomeController home = new HomeController();
-            ViewResult view = home.Foods() as ViewResult;
+            ViewResult view = home.Foods(1) as ViewResult;
 
         }
 
