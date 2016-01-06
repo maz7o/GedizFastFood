@@ -13,7 +13,7 @@
         <div class="row">
             <div class="grid_12">
                 <h2>Reserve Your Food</h2>
-                <img src="@food.foodImage" alt="" class="img_inner fleft inn__1">
+                <img height="300" width="390" src="@food.foodImage" alt="" class="img_inner fleft inn__1">
                 <div class="extra_wrapper">
                     
                     <p>Food Name : @food.foodName </p>
@@ -22,7 +22,7 @@
                     
                 </div>
                 <div class="clear"></div>
-                <a href="" class="btn">ORDER</a>
+               @Html.ActionLink("order", "Order", new { id = @food.foodId }, new { @class = "btn" })
                 
             </div>
             

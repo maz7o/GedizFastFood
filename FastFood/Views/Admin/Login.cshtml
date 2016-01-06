@@ -3,7 +3,6 @@
     ViewBag.Title = "AdminLogin";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 <section class="content">
     <div class="form_block">
         <div class="container">
@@ -28,21 +27,22 @@
                         <div class="response-error-message"></div>
                         <label class="name">
                             <input type="text" id="txtuserid" name="name" placeholder="Username:" value="" data-constraints="@@Required " />
-                            <span class="empty-message">*This field is required.</span>
-                            <span class="error-message">*Student Id should only be numbers.</span>
+                           
                         </label>
                         <div class="clear"></div>
                         <label class="phone">
                             <input type="password" id="txtpassword" name="password" placeholder="Password:" value="" data-constraints="@@Required" />
-                            <span class="empty-message">*This field is required.</span>
-                            <span class="error-message">*This is not a valid phone.</span>
+                            
                         </label>
 
                         <div class="clear"></div>
                         <div class="formerrormsg" style="color:red;"></div>
-
-                        <a href="#" data-type="submit" class="btn" onclick="javascript: ValidateUser();">login</a>
-
+                        
+                        <a href="#"  data-type="submit" class="btn" onclick="javascript: ValidateUser();">login</a>
+                       
+                            <img src="~/Content/Images/Preloader_4.gif" style="display:none; " class="loading" />
+                      
+                        
 
                     </form>
                 </div>

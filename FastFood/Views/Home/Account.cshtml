@@ -9,17 +9,41 @@
 <section class="content ctn__1">
     <div class="container">
         <div class="row">
-            <div class="grid_12">
-               <h2>Welcome @user.firstName &nbsp;&nbsp; @user.lastName</h2>
+            <div class="grid_4">
+
                 <strong>Account Information</strong>
-                <br />
+
+                <br/>
                 Student ID : @user.studentId
-                <br />
+                <br/>
+                First Name : @user.firstName
+                <br/>
+                Last Name : @user.lastName
+                <br/>
                 Email : @user.mail
-                <br />
+                <br/>
                 Balance : @user.balance TL
-                <br />
-                <strong style="color:red">@Html.ActionLink("Logout", "Logout", "Home")</strong>
+                <br/>
+                <strong style="color: red">@Html.ActionLink("Logout", "Logout", "Home")</strong>
+            </div>
+            <div class="grid_8">
+                <strong>ORDERED FOODS</strong>
+                @{
+                    List<FastFood.Models.ReservedFoods> foods = (List<FastFood.Models.ReservedFoods>) ViewData["Foods"];
+                    <br/>
+                    foreach (FastFood.Models.ReservedFoods food in foods)
+                    {
+                        <img src="@food.food.foodImage" height="100" width="150"/>
+                        <div class="extra_wrapper">
+                            Food Name : @food.food.foodName <br>
+                            Food Price : @food.food.foodPrice <br>
+                            Ordered Date : @food.date.ToLongDateString() <br>
+                        </div>
+                        
+                        <br/>
+                       
+                    }
+                }
             </div>
         </div>
     </div>

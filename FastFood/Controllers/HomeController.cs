@@ -27,7 +27,7 @@ namespace FastFood.Controllers
 
         public ActionResult Reservation(int? id)
         {
-            if (Session["userid"] != null)
+            if (Session["user"] != null)
             {
                 if (id != null)
                 {
@@ -45,11 +45,37 @@ namespace FastFood.Controllers
             else
             {
                 return View("Login");
+            }   
+        }
+
+        public ActionResult Order(int id)
+        {
+            Food food = GetFood(id);
+            Users user = GetUser();
+            if (user.balance<food.foodPrice)
+            {
+                return View("Failed");
+            }
+            else
+            {
+                Order order = new Order();
+                order.foodId = food.foodId;
+                order.restaurantId = food.restaurant.restaurantId;
+                order.orderDate = DateTime.Now;
+                order.status = false;
+                order.userId = Convert.ToInt32(user.studentId);
+                db.Orders.Add(order);
+                user.balance = user.balance - food.foodPrice;
+                db.Users.Attach(user);
+                var entry = db.Entry(user);
+                entry.Property(e => e.balance).IsModified = true;
+                // other changed properties
+                db.SaveChanges();
+                return View("Index");
             }
 
-            
-            
         }
+
 
         public ActionResult Foods(int? id)
         {
@@ -86,11 +112,24 @@ namespace FastFood.Controllers
 
         public ActionResult Login()
         {
-            if(Session["userid"]!=null)
+            if(Session["user"]!=null)
             {
-                
-                Users user = db.Users.ToList().First(i => i.studentId == Session["userid"].ToString());
+                Users user = GetUser();
+                List<ReservedFoods> foods = new List<ReservedFoods>();
+                //Users user = db.Users.ToList().First(i => i.studentId == Session["userid"].ToString());
                 ViewData["User"] = user;
+                foreach (Order order in db.Orders.ToList())
+                {
+                    if (order.userId == Convert.ToInt32(user.studentId) && order.status == false)
+                    {
+                        ReservedFoods reserved = new ReservedFoods();
+                        Food food = GetFood(order.foodId);
+                        reserved.food = food;
+                        reserved.date = order.orderDate;
+                        foods.Add(reserved);
+                    }
+                }
+                ViewData["Foods"] = foods;
                 return View("Account");
             }
             else
@@ -107,7 +146,7 @@ namespace FastFood.Controllers
             {
                 if (user.studentId == userId && user.password==password)
                 {
-                    //Session["userid"] = user.studentId;
+                    Session["user"] = user;
                     return "1";
                 }
 
@@ -140,6 +179,21 @@ namespace FastFood.Controllers
             return View("Login");
         }
 
+        private Users GetUser()
+        {
+            return (Users)Session["user"];
+        }
+
+        private Food GetFood(int id)
+        {
+
+            foreach (Food food in db.Foods.ToList())
+            {
+                if (food.foodId == id)
+                    return food;
+            }
+            return null;
+        }
 
 
 

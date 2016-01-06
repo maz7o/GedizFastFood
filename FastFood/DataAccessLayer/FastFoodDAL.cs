@@ -6,6 +6,7 @@ namespace FastFood.DataAccessLayer
     {
         public DbSet<Users> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Admin> Admins  { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -14,6 +15,7 @@ namespace FastFood.DataAccessLayer
             modelBuilder.Entity<Restaurant>().ToTable("RestaurantsTbl");
             modelBuilder.Entity<Food>().ToTable("FoodTbl").HasRequired(s=>s.restaurant);
             modelBuilder.Entity<Admin>().ToTable("AdminTbl").HasRequired(s=>s.restaurant);
+            modelBuilder.Entity<Order>().ToTable("OrderTbl");
 
             base.OnModelCreating(modelBuilder);
         }

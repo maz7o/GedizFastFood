@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Foods";
+    ViewBag.Title = "Orders";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,28 +10,29 @@
     <div class="container">
         <div class="row">
             @{
-                List<FastFood.Models.Food> foods = (List<FastFood.Models.Food>)ViewData["Foods"];
+                List<FastFood.Models.ReservedFoods> foods = (List<FastFood.Models.ReservedFoods>)ViewData["Foods"];
             }
             @{
                 int a = 0;
             }
 
-            @foreach (FastFood.Models.Food r in foods)
+            @foreach (FastFood.Models.ReservedFoods r in foods)
             {
 
                 <div class="grid_4">
                     <div class="gall_block">
                         <div class="maxheight">
-                            <a href="@r.foodImage" class="gall_item"><img height="300" width="380" src="@r.foodImage" alt=""></a>
+                            <a href="@r.food.foodImage" class="gall_item"><img height="300" width="380" src="@r.food.foodImage" alt=""></a>
                             <div class="gall_bot">
-                                <div class="text1"><a href="#">Food Name : @r.foodName </a></div>
+                                <div class="text1"><a href="#">Food Name : @r.food.foodName </a></div>
 
-                                Restaurant : @r.restaurant.restaurantName<br />
-                                Food Price :  @r.foodPrice
+                                Restaurant : @r.food.restaurant.restaurantName<br />
+                                Food Price :  @r.food.foodPrice 
+                                UserID : @r.studentId
 
                                 <br />
-                                @Html.ActionLink("Delete", "Delete", new { id=@r.foodId}, new { @class="btn"})
-                                @Html.ActionLink("Edit", "Edit", new { id = @r.foodId }, new { @class = "btn" })
+                                @Html.ActionLink("Ready", "Order", new { id = @r.orderId}, new { @class = "btn" })
+                              
 
                             </div>
 
@@ -54,3 +55,4 @@
         </div>
     </div>
 </section>
+

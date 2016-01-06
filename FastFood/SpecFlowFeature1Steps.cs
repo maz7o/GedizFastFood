@@ -9,7 +9,6 @@ namespace FastFood
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
         {
-            int
         }
         
         [When(@"I press add")]

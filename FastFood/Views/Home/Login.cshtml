@@ -34,7 +34,7 @@
                         <div class="clear"></div>
                         <label class="phone">
                             <input type="password" id="txtpassword" name="password" placeholder="Password:" value="" data-constraints="@@Required" />
-                            <span class="empty-message">*This field is required.</span>
+                            <span class="empty-message" style="visibility:visible;">*This field is required.</span>
                             <span class="error-message">*This is not a valid phone.</span>
                         </label>
 
@@ -42,6 +42,7 @@
                         <div class="formerrormsg" style="color:red;"></div>
 
                         <a href="#" data-type="submit" class="btn" onclick="javascript: ValidateUser();">login</a>
+                        <img src="~/Content/Images/Preloader_4.gif" style="display:none;" class="loading" />
 
 
                     </form>

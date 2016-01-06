@@ -1,49 +1,53 @@
-﻿@model FastFood.Models.Food
-@{
+﻿@{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Edit</h2>
+@model FastFood.Models.Food
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Food</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @id = "form" })
-        @Html.HiddenFor(model => model.foodId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.foodName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.foodName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.foodName, "", new { @class = "text-danger" })
+<section class="content">
+    <div class="ic">More Website Templates @@ AppState TemplateMonster.com - July 30, 2014!</div>
+    <div class="container">
+        <div class="row">
+            <div class="grid_12">
+                <h2>Edit</h2>
+                <img height="300" width="390" src="@Model.foodImage" alt="" class="img_inner fleft inn__1">
+                <div class="clear"></div>
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.HiddenFor(model => model.foodId)
+                    @Html.HiddenFor(model => model.foodImage)
+                    <br />
+                        @:<div class="form_title colo1"><strong>Food name</strong></div>
+                        <div class="clear"></div>
+                        <label class="name">
+
+                            <input type="text" id="foodName" name="foodName" placeholder="Food Name" value="@Model.foodName" data-constraints="@@Required" />
+
+                        </label>
+                        <div class="clear"></div>
+                        <div class="form_title colo1"><strong>Food price</strong></div>
+                        <label class="phone">
+                            <input type="text" id="foodPrice" name="foodPrice" placeholder="Food Price" value="@Model.foodPrice" data-constraints="@@Required" />
+                        </label>
+                        <div class="clear"></div>
+                        <a href="#" onclick="document.getElementById('form').submit();" class="btn">Edit</a>
+                        @Html.ActionLink("Back to Foods", "Foods", null, new { @class = "btn" })
+
+
+                }
+
+
+                <div class="clear"></div>
+
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.foodPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.foodPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.foodPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.foodImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.foodImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.foodImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
         </div>
     </div>
-}
+</section>

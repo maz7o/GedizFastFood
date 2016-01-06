@@ -1,52 +1,46 @@
-﻿@model FastFood.Models.Food
+﻿@using System.Web.Mvc.Html
+@model FastFood.Models.Food
+
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
 
-
-
 <section class="content">
-    <div class="ic">More Website Templates @@ AppState TemplateMonster.com - July 30, 2014!</div>
-    <div class="container">
-        <div class="row">
-            <div class="grid_12">
-                <h2>Add</h2>
-                <div class="clear"></div>
-
-                @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-
-
-                    @Html.HiddenFor(model => model.foodId)
-                    @Html.HiddenFor(model => model.foodImage)
+    
+    <div class="form_block">
+        <div class="container">
+            <div class="row">
+                <div class="grid_11">
                     <br />
-                        @:<div class="form_title colo1"><strong>Food name</strong></div>
-                        <div class="clear"></div>
-                    <label class="name">
+                    <br />
+                    <br/>
+                    <h2> Add Food</h2>
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new {enctype = "multipart/form-data"}))
+                    {
+                        @Html.AntiForgeryToken()
 
-                        <input type="text" id="foodName" name="foodName" placeholder="Food Name" data-constraints="@@Required"/>
 
-                    </label>
+                        <label class="name">
+                            <input type="text" name="foodName" placeholder="Food Name:" value="" data-constraints="@@Required "/>
 
-                        <div class="clear"></div>
-                        <div class="form_title colo1"><strong>Food price</strong></div>
-                        <label class="phone">
-                            <input type="text" id="foodPrice" name="foodPrice" placeholder="Food Price"  data-constraints="@@Required" />
                         </label>
                         <div class="clear"></div>
-                        <a href="#" onclick="document.getElementById('form').submit();" class="btn">Edit</a>
-                        @Html.ActionLink("Back to Foods", "Foods", null, new { @class = "btn" })
+                        <label class="phone">
+                            <input type="text" id="foodPrice" name="foodPrice" placeholder="Price:" value="" data-constraints="@@Required"/>
+
+                        </label>
+                        <input type="hidden" name="restaurantId" value="@ViewData["restaurantId"]"/>
+                        <br/>
+                        <input type="file" name="file" />
+                        <input type="submit" value="add"/>
+
+                    }
 
 
-                }
-
-
-                <div class="clear"></div>
-
+                </div>
             </div>
-
         </div>
     </div>
 </section>
