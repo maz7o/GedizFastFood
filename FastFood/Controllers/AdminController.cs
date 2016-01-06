@@ -34,6 +34,69 @@ namespace FastFood.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            ViewData["restaurantId"] = getAdmin().restaurant.restaurantId;
+            return View();
+        }
+
+        public ActionResult Orders()
+        {
+            List<ReservedFoods> foods = new List<ReservedFoods>();
+
+            Admin admin = getAdmin();
+            foreach (Order order in db.Orders.ToList())
+            {
+                if (order.restaurantId == admin.restaurant.restaurantId && order.status == false)
+                {
+                    ReservedFoods reserved = new ReservedFoods();
+                    Food food = GetFood(order.foodId);
+                    reserved.orderId = order.orderId;
+                    reserved.studentId = order.userId;
+                    reserved.food = food;
+                    reserved.date = order.orderDate;
+                    foods.Add(reserved);
+                }
+            }
+            ViewData["Foods"] = foods;
+            return View();
+
+        }
+
+        public ActionResult Order(int id)
+        {
+            Order order = db.Orders.ToList().First(ord => ord.orderId == id);
+            order.status = true;
+            db.Orders.Attach(order);
+            var entry = db.Entry(order);
+            entry.Property(e => e.status).IsModified = true;
+            // other changed properties
+            db.SaveChanges();
+            return RedirectToAction("Orders");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "foodId,foodName,foodPrice,foodImage")] Food food, int restaurantId, HttpPostedFileBase file)
+        {
+            string pic = System.IO.Path.GetFileName(file.FileName);
+            string path = System.IO.Path.Combine(
+            Server.MapPath("~/Content/Images"), pic);
+            string picPath = "/Content/Images/" + pic;
+            food.foodImage = picPath;
+            // file is uploaded
+            file.SaveAs(path);
+            if (ModelState.IsValid)
+                {
+                    food.restaurant = GetRestaurant(restaurantId);
+                    db.Foods.Add(food);
+                    db.SaveChanges();
+                    return RedirectToAction("Foods");
+                }
+
+                return View(food);
+         
+        }
+
         public ActionResult Login()
         {
             if(isLoggedIn())
@@ -96,6 +159,11 @@ namespace FastFood.Controllers
 
             }
             return "0";
+        }
+
+        public Restaurant GetRestaurant(int id)
+        {
+            return db.Restaurants.Where(x => x.restaurantId == id).FirstOrDefault();
         }
 
         public ActionResult Delete(int? id)
@@ -162,8 +230,8 @@ namespace FastFood.Controllers
                 }
                 else
                 {
-                    ViewData["Food"] = food;
-                    return View();
+                    
+                    return View(food);
                 }
 
 
@@ -203,6 +271,16 @@ namespace FastFood.Controllers
         private Admin getAdmin()
         {
             return (Admin)Session["admin"];
+        }
+        private Food GetFood(int id)
+        {
+
+            foreach (Food food in db.Foods.ToList())
+            {
+                if (food.foodId == id)
+                    return food;
+            }
+            return null;
         }
 
     }
